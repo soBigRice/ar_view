@@ -560,7 +560,7 @@ __metadata:
   dependencies:
     "@zappar/zappar-threejs": ^2.5.1
     node-fetch: ^3.3.2
-    three: ^0.170.0
+    three: 0.128.0
     vite: ^5.4.10
     vite-plugin-mkcert: ^1.17.6
   languageName: unknown
@@ -1587,10 +1587,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"three@npm:^0.170.0":
-  version: 0.170.0
-  resolution: "three@npm:0.170.0"
-  checksum: 774d8091e51f784cf4f5a5326e11e2be947ab7cc5f1056de59f13d4682310937615b264d7161357b09bd16e6648719c49e568d5cc595f14637477ecadeec71e2
+"three@npm:0.128.0":
+  version: 0.128.0
+  resolution: "three@npm:0.128.0"
+  checksum: 94d2b0e0ab1093acbc97e7de2ba38073f0479d2285f5ec333d1f900f1bf8c6a435f5815f24678f38a9898fc1ca39595a0c865cf83b3ce9c4164bba3393108dd3
   languageName: node
   linkType: hard
 

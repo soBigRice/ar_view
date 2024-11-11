@@ -2,7 +2,7 @@
  * @Author: MrRice
  * @Date: 2024-11-08 13:38:05
  * @LastEditors: MrRice 1246333567@qq.com
- * @LastEditTime: 2024-11-08 13:57:13
+ * @LastEditTime: 2024-11-11 18:18:37
  * @FilePath: /vr_viewer/vite.config.js
  * @Description:
  * -----小舟从此逝，江海寄余生----

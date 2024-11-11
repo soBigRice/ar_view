@@ -1,64 +1,58 @@
-/*
- * @Author: MrRice
- * @Date: 2024-11-08 11:43:00
- * @LastEditors: MrRice 1246333567@qq.com
- * @LastEditTime: 2024-11-11 16:46:03
- * @FilePath: /vr_viewer/main.js
- * @Description:
- * -----小舟从此逝，江海寄余生----
- * Copyright (c) 2024 by 米大饭, All Rights Reserved.
- */
-import "./style.css";
-import * as THREE from "three";
 import * as ZapparThree from "@zappar/zappar-threejs";
+import * as THREE from "three";
+import "./style.css";
 
-const manager = new ZapparThree.LoadingManager();
+// Set up ThreeJS in the usual way
 let scene = new THREE.Scene();
+let renderer = new THREE.WebGLRenderer({ alpha: true });
+document.body.appendChild(renderer.domElement);
 
-const container = document.getElementById("app");
+let camera = new ZapparThree.Camera();
+const resize = () => {
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  camera.aspect = window.innerWidth / window.innerHeight;
+  // camera.updateProjectionMatrix();
+};
 
-const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-renderer.setSize(container.clientWidth, container.clientHeight);
-renderer.outputEncoding = THREE.sRGBEncoding;
+window.addEventListener("resize", resize);
 
-const camera = new ZapparThree.Camera();
-// Add the below line for consistency
-camera.backgroundTexture.encoding = THREE.sRGBEncoding;
-scene.background = camera.backgroundTexture;
-container.appendChild(renderer.domElement);
-
+// The Zappar library needs the WebGL context to process camera images
+// Use this function to set your context
 ZapparThree.glContextSet(renderer.getContext());
 
+// Create a camera and set the scene background to the camera's backgroundTexture
+scene.background = camera.backgroundTexture;
+
+// Request camera permissions and start the camera
 ZapparThree.permissionRequestUI().then((granted) => {
   if (granted) camera.start();
   else ZapparThree.permissionDeniedUI();
 });
 
-renderer.autoClear = false;
-let imageTracker = new ZapparThree.ImageTrackerLoader(manager).load(
-  "./locate.zpt"
-);
+// Set up a tracker, in this case an image tracker
+let imageTracker = new ZapparThree.ImageTrackerLoader().load("./locate.zpt");
 let trackerGroup = new ZapparThree.ImageAnchorGroup(camera, imageTracker);
 scene.add(trackerGroup);
 
-//创建一个小盒子再这里
+//创建一个盒子放进去
 const box = new THREE.Mesh(
   new THREE.BoxGeometry(1, 1, 1),
   new THREE.MeshBasicMaterial({ color: 0xff0000 })
 );
-trackerGroup.add(box); //将盒子添加到trackerGroup中
+trackerGroup.add(box);
 
-window.addEventListener("resize", () => {
-  renderer.setSize(container.clientWidth, container.clientHeight);
+// Place any 3D content you'd like tracked from the image into the trackerGroup
 
-  camera.aspect = container.clientWidth / container.clientHeight;
-  camera.updateProjectionMatrix();
-});
 function animate() {
+  // Ask the browser to call this function again next frame
   requestAnimationFrame(animate);
-  camera.updateFrame(renderer);
-  renderer.render(scene, camera);
-  renderer.clear();
-}
 
+  // The Zappar camera should have updateFrame called every frame
+  camera.updateFrame(renderer);
+
+  renderer.render(scene, camera);
+}
+resize();
+
+// Start things off
 animate();
