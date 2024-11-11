@@ -2,7 +2,7 @@
  * @Author: MrRice
  * @Date: 2024-11-08 11:43:00
  * @LastEditors: MrRice 1246333567@qq.com
- * @LastEditTime: 2024-11-11 15:35:30
+ * @LastEditTime: 2024-11-11 16:46:03
  * @FilePath: /vr_viewer/main.js
  * @Description:
  * -----小舟从此逝，江海寄余生----
@@ -31,12 +31,12 @@ ZapparThree.glContextSet(renderer.getContext());
 
 ZapparThree.permissionRequestUI().then((granted) => {
   if (granted) camera.start();
-  else ZapparThree.permissionDeniedUI(); 
+  else ZapparThree.permissionDeniedUI();
 });
 
 renderer.autoClear = false;
 let imageTracker = new ZapparThree.ImageTrackerLoader(manager).load(
-  "/public/locate.zpt"
+  "./locate.zpt"
 );
 let trackerGroup = new ZapparThree.ImageAnchorGroup(camera, imageTracker);
 scene.add(trackerGroup);
