@@ -554,6 +554,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"ar_viewer@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "ar_viewer@workspace:."
+  dependencies:
+    "@zappar/zappar-threejs": ^2.5.1
+    node-fetch: ^3.3.2
+    three: ^0.170.0
+    vite: ^5.4.10
+    vite-plugin-mkcert: ^1.17.6
+  languageName: unknown
+  linkType: soft
+
 "asynckit@npm:^0.4.0":
   version: 0.4.0
   resolution: "asynckit@npm:0.4.0"
@@ -1670,18 +1682,6 @@ __metadata:
   checksum: 4db3b8ca3eddbc312d0a95f505d16656e74c6dfa68d3b5eb54b6d6b0f7be1df348d469c43dc69db27dadc06b802f029d654da48f392324efd665ef2c0ca9ba9e
   languageName: node
   linkType: hard
-
-"vr_viewer@workspace:.":
-  version: 0.0.0-use.local
-  resolution: "vr_viewer@workspace:."
-  dependencies:
-    "@zappar/zappar-threejs": ^2.5.1
-    node-fetch: ^3.3.2
-    three: ^0.170.0
-    vite: ^5.4.10
-    vite-plugin-mkcert: ^1.17.6
-  languageName: unknown
-  linkType: soft
 
 "web-streams-polyfill@npm:^3.0.3":
   version: 3.3.3
