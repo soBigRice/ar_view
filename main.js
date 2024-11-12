@@ -1,6 +1,6 @@
-// import "./three";
+import * as THREE from "three";
 
-// import "./ar-threex";
+import * as THREEx from "./THREEXAR";
 
 var renderer = new THREE.WebGLRenderer({
   antialias: true,
