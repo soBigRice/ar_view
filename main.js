@@ -1,6 +1,7 @@
 import * as THREE from "three";
 
 import * as THREEx from "./THREEXAR";
+import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 
 var renderer = new THREE.WebGLRenderer({
   antialias: true,
@@ -25,7 +26,12 @@ var scene = new THREE.Scene();
 //////////////////////////////////////////////////////////////////////////////////
 
 // Create a camera
-var camera = new THREE.Camera();
+var camera = new THREE.PerspectiveCamera(
+  45,
+  window.innerWidth / window.innerHeight,
+  0.1,
+  1000
+);
 scene.add(camera);
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -78,6 +84,7 @@ function onResize() {
       window.arToolkitContext.arController.canvas
     );
   }
+  renderer.setSize(window.innerWidth, window.innerHeight);
 }
 ////////////////////////////////////////////////////////////////////////////////
 //          initialize arToolkitContext
@@ -105,7 +112,8 @@ function initARContext() {
   arMarkerControls = new THREEx.ArMarkerControls(arToolkitContext, camera, {
     type: "pattern",
     // patternUrl: THREEx.ArToolkitContext.baseURL + "../data/data/patt.hiro",
-    patternUrl: "./pattern-marker.patt",
+    // patternUrl: "./pattern-marker.patt",
+    patternUrl: "./pattern-R.patt",
     // patternUrl : THREEx.ArToolkitContext.baseURL + '../data/data/patt.kanji',
     // as we controls the camera, set changeMatrixMode: 'cameraTransformMatrix'
     changeMatrixMode: "cameraTransformMatrix",
@@ -157,24 +165,32 @@ onRenderFcts.push(function () {
 //////////////////////////////////////////////////////////////////////////////////
 
 // add a torus knot
-var geometry = new THREE.BoxGeometry(1, 1, 1);
-var material = new THREE.MeshNormalMaterial({
-  transparent: true,
-  opacity: 0.5,
-  side: THREE.DoubleSide,
-});
-var mesh = new THREE.Mesh(geometry, material);
-mesh.position.y = geometry.parameters.height / 2;
-scene.add(mesh);
+// var geometry = new THREE.BoxGeometry(1, 1, 1);
+// var material = new THREE.MeshNormalMaterial({
+//   transparent: true,
+//   opacity: 0.5,
+//   side: THREE.DoubleSide,
+// });
+// var mesh = new THREE.Mesh(geometry, material);
+// mesh.position.y = geometry.parameters.height / 2;
+// scene.add(mesh);
 
-var geometry = new THREE.TorusKnotGeometry(0.3, 0.1, 64, 16);
-var material = new THREE.MeshNormalMaterial();
-var mesh = new THREE.Mesh(geometry, material);
-mesh.position.y = 0.5;
-scene.add(mesh);
+// var geometry = new THREE.TorusKnotGeometry(0.3, 0.1, 64, 16);
+// var material = new THREE.MeshNormalMaterial();
+// var mesh = new THREE.Mesh(geometry, material);
+// mesh.position.y = 0.5;
+// scene.add(mesh);
 
-onRenderFcts.push(function (delta) {
-  mesh.rotation.x += Math.PI * delta;
+// onRenderFcts.push(function (delta) {
+//   mesh.rotation.x += Math.PI * delta;
+// });
+
+//加载一个glb模型
+const loader = new GLTFLoader();
+loader.load("./public/free_deep_space.glb", function (gltf) {
+  gltf.scene.rotateX(-Math.PI / 2);
+  gltf.scene.scale.setScalar(0.5);
+  scene.add(gltf.scene); // 将模型添加到场景中
 });
 
 //////////////////////////////////////////////////////////////////////////////////
