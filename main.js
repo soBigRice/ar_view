@@ -187,9 +187,10 @@ onRenderFcts.push(function () {
 
 //加载一个glb模型
 const loader = new GLTFLoader();
-loader.load("./public/free_deep_space.glb", function (gltf) {
+loader.load("./free_deep_space.glb", function (gltf) {
   gltf.scene.rotateX(-Math.PI / 2);
   gltf.scene.scale.setScalar(0.5);
+
   scene.add(gltf.scene); // 将模型添加到场景中
 });
 
