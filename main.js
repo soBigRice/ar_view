@@ -2,6 +2,9 @@ import * as THREE from "three";
 
 import * as THREEx from "./THREEXAR";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
+import VConsole from "vconsole";
+
+const cs = new VConsole();
 
 var renderer = new THREE.WebGLRenderer({
   antialias: true,
@@ -77,6 +80,7 @@ window.addEventListener("resize", function () {
 });
 
 function onResize() {
+  renderer.setSize(window.innerWidth, window.innerHeight);
   arToolkitSource.onResizeElement();
   arToolkitSource.copyElementSizeTo(renderer.domElement);
   if (window.arToolkitContext.arController !== null) {
@@ -84,7 +88,6 @@ function onResize() {
       window.arToolkitContext.arController.canvas
     );
   }
-  renderer.setSize(window.innerWidth, window.innerHeight);
 }
 ////////////////////////////////////////////////////////////////////////////////
 //          initialize arToolkitContext
@@ -187,12 +190,18 @@ onRenderFcts.push(function () {
 
 //加载一个glb模型
 const loader = new GLTFLoader();
-loader.load("./free_deep_space.glb", function (gltf) {
-  gltf.scene.rotateX(-Math.PI / 2);
-  gltf.scene.scale.setScalar(0.5);
-  alert("加载完成");
-  scene.add(gltf.scene); // 将模型添加到场景中
-});
+loader.load(
+  "./free_deep_space.glb",
+  function (gltf) {
+    gltf.scene.rotateX(-Math.PI / 2);
+    gltf.scene.scale.setScalar(0.5);
+    alert("加载完成");
+    scene.add(gltf.scene); // 将模型添加到场景中
+  },
+  (loading) => {
+    console.log("loading", loading.loaded / loading.total);
+  }
+);
 
 //////////////////////////////////////////////////////////////////////////////////
 //		render the whole thing on the page

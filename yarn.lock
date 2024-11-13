@@ -5,6 +5,15 @@ __metadata:
   version: 6
   cacheKey: 8
 
+"@babel/runtime@npm:^7.17.2":
+  version: 7.26.0
+  resolution: "@babel/runtime@npm:7.26.0"
+  dependencies:
+    regenerator-runtime: ^0.14.0
+  checksum: c8e2c0504ab271b3467a261a8f119bf2603eb857a0d71e37791f4e3fae00f681365073cc79f141ddaa90c6077c60ba56448004ad5429d07ac73532be9f7cf28a
+  languageName: node
+  linkType: hard
+
 "@esbuild/aix-ppc64@npm:0.21.5":
   version: 0.21.5
   resolution: "@esbuild/aix-ppc64@npm:0.21.5"
@@ -561,6 +570,7 @@ __metadata:
     "@zappar/zappar-threejs": ^2.5.1
     node-fetch: ^3.3.2
     three: 0.128.0
+    vconsole: ^3.15.1
     vite: ^5.4.10
     vite-plugin-mkcert: ^1.17.6
   languageName: unknown
@@ -663,6 +673,20 @@ __metadata:
   dependencies:
     delayed-stream: ~1.0.0
   checksum: 49fa4aeb4916567e33ea81d088f6584749fc90c7abec76fd516bf1c5aa5c79f3584b5ba3de6b86d26ddd64bae5329c4c7479343250cfe71c75bb366eae53bb7c
+  languageName: node
+  linkType: hard
+
+"copy-text-to-clipboard@npm:^3.0.1":
+  version: 3.2.0
+  resolution: "copy-text-to-clipboard@npm:3.2.0"
+  checksum: df7115c197a166d51f59e4e20ab2a68a855ae8746d25ff149b5465c694d9a405c7e6684b73a9f87ba8d653070164e229c15dfdb9fd77c30be1ff0da569661060
+  languageName: node
+  linkType: hard
+
+"core-js@npm:^3.11.0":
+  version: 3.39.0
+  resolution: "core-js@npm:3.39.0"
+  checksum: 7a3670e9a2a89e0a049daa288d742d09f6e16d27a8945c5e2ef6fc45dc57e5c4bc5db589da05947486f54ae978d14cf27bd3fb1db0b9907000a611e8af37355b
   languageName: node
   linkType: hard
 
@@ -1218,6 +1242,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"mutation-observer@npm:^1.0.3":
+  version: 1.0.3
+  resolution: "mutation-observer@npm:1.0.3"
+  checksum: 6b550215af970471ec900a6c89397d032c49d13d402e1c93c3cb9b0324c49a2628f6a06839106075a005d640305d250b80f2960c27b2a379055f5bc54851c35e
+  languageName: node
+  linkType: hard
+
 "nanoid@npm:^3.3.7":
   version: 3.3.7
   resolution: "nanoid@npm:3.3.7"
@@ -1364,6 +1395,13 @@ __metadata:
   version: 1.1.0
   resolution: "proxy-from-env@npm:1.1.0"
   checksum: ed7fcc2ba0a33404958e34d95d18638249a68c430e30fcb6c478497d72739ba64ce9810a24f53a7d921d0c065e5b78e3822759800698167256b04659366ca4d4
+  languageName: node
+  linkType: hard
+
+"regenerator-runtime@npm:^0.14.0":
+  version: 0.14.1
+  resolution: "regenerator-runtime@npm:0.14.1"
+  checksum: 9f57c93277b5585d3c83b0cf76be47b473ae8c6d9142a46ce8b0291a04bb2cf902059f0f8445dcabb3fb7378e5fe4bb4ea1e008876343d42e46d3b484534ce38
   languageName: node
   linkType: hard
 
@@ -1623,6 +1661,18 @@ __metadata:
   version: 6.0.1
   resolution: "universal-user-agent@npm:6.0.1"
   checksum: fdc8e1ae48a05decfc7ded09b62071f571c7fe0bd793d700704c80cea316101d4eac15cc27ed2bb64f4ce166d2684777c3198b9ab16034f547abea0d3aa1c93c
+  languageName: node
+  linkType: hard
+
+"vconsole@npm:^3.15.1":
+  version: 3.15.1
+  resolution: "vconsole@npm:3.15.1"
+  dependencies:
+    "@babel/runtime": ^7.17.2
+    copy-text-to-clipboard: ^3.0.1
+    core-js: ^3.11.0
+    mutation-observer: ^1.0.3
+  checksum: c627ee18b274a2116c6ddb47940118959940d312cd676deb36040bcb32fde5d79af257f2f6e69d57919ab6ce3a868cb12f2e6a9f32c1fd3db65090eeac8b510a
   languageName: node
   linkType: hard
 
