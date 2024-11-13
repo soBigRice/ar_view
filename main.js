@@ -1,6 +1,7 @@
 import * as THREE from "three";
 
 import * as THREEx from "./THREEXAR";
+import { FBXLoader } from "three/examples/jsm/loaders/FBXLoader.js";
 
 var renderer = new THREE.WebGLRenderer({
   antialias: true,
@@ -27,7 +28,13 @@ var scene = new THREE.Scene();
 //////////////////////////////////////////////////////////////////////////////////
 
 // Create a camera
-var camera = new THREE.Camera();
+// var camera = new THREE.Camera();
+var camera = new THREE.PerspectiveCamera(
+  75,
+  window.innerWidth / window.innerHeight,
+  0.1,
+  1000
+);
 scene.add(camera);
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -109,7 +116,8 @@ function initARContext() {
   arMarkerControls = new THREEx.ArMarkerControls(arToolkitContext, camera, {
     type: "pattern",
     // patternUrl: THREEx.ArToolkitContext.baseURL + "../data/data/patt.hiro",
-    patternUrl: "./pattern-marker.patt",
+    // patternUrl: "./pattern-marker.patt",
+    patternUrl: "./pattern-NB.patt",
     // patternUrl : THREEx.ArToolkitContext.baseURL + '../data/data/patt.kanji',
     // as we controls the camera, set changeMatrixMode: 'cameraTransformMatrix'
     changeMatrixMode: "cameraTransformMatrix",
@@ -161,24 +169,48 @@ onRenderFcts.push(function () {
 //////////////////////////////////////////////////////////////////////////////////
 
 // add a torus knot
-var geometry = new THREE.BoxGeometry(1, 1, 1);
-var material = new THREE.MeshNormalMaterial({
-  transparent: true,
-  opacity: 0.5,
-  side: THREE.DoubleSide,
-});
-var mesh = new THREE.Mesh(geometry, material);
-mesh.position.y = geometry.parameters.height / 2;
-scene.add(mesh);
+// var geometry = new THREE.BoxGeometry(1, 1, 1);
+// var material = new THREE.MeshNormalMaterial({
+//   transparent: true,
+//   opacity: 0.5,
+//   side: THREE.DoubleSide,
+// });
+// var mesh = new THREE.Mesh(geometry, material);
+// mesh.position.y = geometry.parameters.height / 2;
+// scene.add(mesh);
 
-var geometry = new THREE.TorusKnotGeometry(0.3, 0.1, 64, 16);
-var material = new THREE.MeshNormalMaterial();
-var mesh = new THREE.Mesh(geometry, material);
-mesh.position.y = 0.5;
-scene.add(mesh);
+// var geometry = new THREE.TorusKnotGeometry(0.3, 0.1, 64, 16);
+// var material = new THREE.MeshNormalMaterial();
+// var mesh = new THREE.Mesh(geometry, material);
+// mesh.position.y = 0.5;
+// scene.add(mesh);
 
-onRenderFcts.push(function (delta) {
-  mesh.rotation.x += Math.PI * delta;
+// onRenderFcts.push(function (delta) {
+//   // mesh.rotation.x += Math.PI * delta;
+// });
+
+const light = new THREE.AmbientLight(0xffffff, 2);
+scene.add(light);
+
+// const materialMap = new Map();
+
+//加载一个FBX的模型
+const loader = new FBXLoader();
+loader.load("./model/build.fbx", (res) => {
+  res.scale.setScalar(0.01);
+  res.rotateX(-Math.PI / 2);
+  // res.traverse((child) => {
+  //   if (child.isMesh) {
+  //     if (!materialMap.has(child.material.uuid)) {
+  //       const newMat = new THREE.MeshBasicMaterial();
+  //       Object.assign(newMat, child.material);
+  //       materialMap.set(child.material.uuid, newMat);
+  //     } else {
+  //       child.material = materialMap.get(child.material.uuid);
+  //     }
+  //   }
+  // });
+  scene.add(res);
 });
 
 //////////////////////////////////////////////////////////////////////////////////
