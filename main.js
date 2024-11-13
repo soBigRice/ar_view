@@ -8,6 +8,8 @@ var renderer = new THREE.WebGLRenderer({
 });
 renderer.setClearColor(new THREE.Color("lightgrey"), 0);
 // renderer.setSize(640, 480);
+renderer.setSize(window.innerWidth, window.innerHeight);
+
 renderer.domElement.style.position = "absolute";
 renderer.domElement.style.top = "0px";
 renderer.domElement.style.left = "0px";
@@ -78,6 +80,8 @@ function onResize() {
       window.arToolkitContext.arController.canvas
     );
   }
+
+  renderer.setSize(window.innerWidth, window.innerHeight);
 }
 ////////////////////////////////////////////////////////////////////////////////
 //          initialize arToolkitContext
