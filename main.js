@@ -190,7 +190,7 @@ const loader = new GLTFLoader();
 loader.load("./free_deep_space.glb", function (gltf) {
   gltf.scene.rotateX(-Math.PI / 2);
   gltf.scene.scale.setScalar(0.5);
-
+  alert("加载完成");
   scene.add(gltf.scene); // 将模型添加到场景中
 });
 
